@@ -20,5 +20,22 @@ fi
 #chmod +x test_sel_bin
 #./test_sel_bin > sel_bin.logs
 
+echo "Google Chrome instalado correctamente."
+
+# ========== NUEVAS DEPENDENCIAS PARA UNDETECTED-CHROMEDRIVER ==========
+echo "Instalando dependencias para entorno gráfico virtual (Xvfb)..."
+apt install -y xvfb
+
+echo "Instalando librerías gráficas necesarias para Chrome en servidor..."
+apt install -y \
+    libxss1 \
+    libappindicator1 \
+    libindicator7 \
+    libgbm1 \
+    libasound2 \
+    fonts-liberation \
+    libu2f-udev \
+    libvulkan1 \
+    xdg-utils
 
 timedatectl set-timezone America/Bogota
