@@ -3,6 +3,7 @@ apt update
 apt install wget -y
 mkdir /root/bot_files
 cd /root/bot_files
+mkdir storage
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 # Try to install Chrome
