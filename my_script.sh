@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 
 echo "=========================================="
 echo "🚀 Iniciando instalación del Bot (Binario)"
@@ -33,10 +33,12 @@ fi
 # Verificar instalación
 echo "✅ Google Chrome $(google-chrome --version) instalado"
 
-# ========== INSTALAR XVFB Y LIBRERÍAS GRÁFICAS ==========
+# Instalar Xvfb individualmente para evitar que un error detenga todo
 echo "🎨 Instalando Xvfb y librerías gráficas..."
+apt install -y xvfb || echo "⚠️ Xvfb instalado con advertencias"
+
+# ========== INSTALAR LIBRERÍAS GRÁFICAS ==========
 apt install -y \
-    xvfb \
     libxss1 \
     libappindicator1 \
     libindicator7 \
@@ -58,7 +60,7 @@ apt install -y \
     libxdamage1 \
     libxfixes3 \
     libxrandr2 \
-    libxshmfence1
+    libxshmfence1 || echo "⚠️ Algunas librerías ya estaban instaladas"
 
 # Configurar zona horaria
 timedatectl set-timezone America/Bogota
