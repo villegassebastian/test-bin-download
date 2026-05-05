@@ -1,7 +1,6 @@
 [Unit]
 Description=Betting Bot Service
 After=network.target
-Requires=xvfb.service
 
 [Service]
 User=root
