@@ -11,6 +11,7 @@ apt install -y wget curl
 # Crear directorios
 mkdir -p /root/bot_files
 mkdir -p /root/bot_files/storage
+mkdir -p /root/storage
 mkdir -p /root/bot_files/logs
 mkdir -p /root/bot_files/screenshots
 cd /root/bot_files
