@@ -16,16 +16,19 @@ mkdir -p /root/bot_files/logs
 mkdir -p /root/bot_files/screenshots
 cd /root/bot_files
 
-# ========== INSTALAR GOOGLE CHROME (desde repositorio oficial) ==========
-echo "📦 Instalando Google Chrome desde repositorio oficial..."
+# ========== INSTALAR GOOGLE CHROME ==========
+echo "📦 Instalando Google Chrome..."
+wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-# Agregar clave GPG y repositorio de Google
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-chrome.gpg
-echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
-
-# Actualizar e instalar Chrome
-apt update
-apt install -y google-chrome-stable
+# Intentar instalar Chrome
+if ! dpkg -i google-chrome-stable_current_amd64.deb 2>/dev/null; then
+    echo "⚠️ Instalando dependencias faltantes de Chrome..."
+    apt -f install -y
+    if ! dpkg -i google-chrome-stable_current_amd64.deb; then
+        echo "❌ Error: No se pudo instalar Chrome"
+        exit 1
+    fi
+fi
 
 # Verificar instalación
 echo "✅ Google Chrome $(google-chrome --version) instalado"
@@ -89,3 +92,4 @@ sleep 2
 echo "=========================================="
 echo "✅ Instalación base completada"
 echo "=========================================="
+
